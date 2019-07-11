@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import {
   fetchMessages,
-  onMessageSend,
+  sendWSMessage,
+  loginUser,
   connectToWS,
 } from '../../store/actions/chat';
 
 
-const ChatPage = ({ messages, fetchMessages, onMessageSend, connectToWS }) => {
+const ChatPage = ({ messages, fetchMessages, sendWSMessage, connectToWS, loginUser }) => {
   useEffect(
     () => {
       connectToWS();
@@ -16,11 +17,22 @@ const ChatPage = ({ messages, fetchMessages, onMessageSend, connectToWS }) => {
     [],
   )
 
+  const [isLoggined, setIsLoggined] = useState(false);
   const [message, setMessage] = useState('');
+  const [userName, setUserName] = useState('');
 
-  const handleSendCLick = () => {
-    const messageObj = { author: 'me', msg: message };
-    onMessageSend(messageObj);
+  const handleLoginSendSubmit = (e) => {
+    e.preventDefault();
+    loginUser(userName);
+    setUserName('');
+    setIsLoggined(true);
+  }
+
+  const handleMessageSendSubmit = (e) => {
+    e.preventDefault();
+    const messageObj = { msg: message };
+    sendWSMessage(messageObj);
+    setMessage('');
   }
 
   return (
@@ -32,8 +44,22 @@ const ChatPage = ({ messages, fetchMessages, onMessageSend, connectToWS }) => {
           ))
         }
       </ul>
-      <input type="text" value={message} onChange={e => setMessage(e.target.value)} />
-      <button type="button" onClick={handleSendCLick}>Send</button>
+      {
+        !isLoggined && (
+          <form onSubmit={handleLoginSendSubmit}>
+            <input type="text" value={userName} onChange={e => setUserName(e.target.value)} />
+            <button type="submit">Login</button>
+          </form>
+        )
+      }
+      {
+        isLoggined && (
+          <form onSubmit={handleMessageSendSubmit}>
+            <input type="text" value={message} onChange={e => setMessage(e.target.value)} />
+            <button type="submit">Send</button>
+          </form>
+        )
+      }
     </div>
   )
 }
@@ -44,7 +70,8 @@ const mapStateToProps = ({ chat: { messages } }) => ({
 
 const mapDispatchToProps = {
   fetchMessages,
-  onMessageSend,
+  sendWSMessage,
+  loginUser,
   connectToWS,
 }
 

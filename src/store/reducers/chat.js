@@ -47,6 +47,26 @@ export default (state = initialState, { type, payload, meta }) => {
       };
 
     case CHAT_WEBSOCKET_MESSAGE:
+      const { type, payload: messagePayload } = JSON.parse(payload.message);
+      switch (type) {
+        case 'LOGIN':
+          return {
+            ...state,
+            logginedUsers: messagePayload,
+          }
+        case 'MESSAGE':
+          return {
+            ...state,
+            messages: [
+              ...state.messages,
+              messagePayload,
+            ],
+          }
+        default:
+          return {
+            ...state,
+          }
+      }
       return {
         ...state,
         messages: [
