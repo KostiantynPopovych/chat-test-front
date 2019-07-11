@@ -6,7 +6,7 @@ import {
 import { WEBSOCKET_PREFIX } from '../../constants/config';
 
 export const fetchMessages = () => async (dispatch) => {
-  const { data } = await axios.get('https://chat-test-front.herokuapp.com/chat');
+  const { data } = await axios.get('https://chat-test-back.herokuapp.com/chat');
   dispatch(fetchChatMessagesSuccess(data));
 }
 
