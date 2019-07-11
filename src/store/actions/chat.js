@@ -11,5 +11,6 @@ export const fetchMessages = () => async (dispatch) => {
 }
 
 export const onMessageSend = message => dispatch => dispatch(send(message, WEBSOCKET_PREFIX));
-
-export const connectToWS = () => (dispatch) => dispatch(connect('wss://chat-test-back.herokuapp.com', WEBSOCKET_PREFIX));
+const isProd = true;
+const URL = isProd ? 'wss://chat-test-back.herokuapp.com' : 'ws://localhost:5000';
+export const connectToWS = () => (dispatch) => dispatch(connect(URL, WEBSOCKET_PREFIX));
