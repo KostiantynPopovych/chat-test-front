@@ -1,0 +1,21 @@
+.chat_message {
+  background-color:  rgba(57, 63, 84, 0.8);
+  border-radius: 20px;
+  padding: 10px 20px;
+  margin: 15px 0;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  
+  &-author {
+    color: #BFD2FF;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 7px;
+  }
+
+  &-msg {
+    color: #BFD2FF;
+    font-size: 1.3rem;
+  }
+}

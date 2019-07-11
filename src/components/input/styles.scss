@@ -1,0 +1,56 @@
+// colors
+$input-background: rgba(57, 63, 84, 0.8);
+$input-text-inactive: #7881A1;
+$input-text-active: #BFD2FF;
+
+// gradient animation
+@keyframes gradient { 
+  0%{background-position:0 0}
+  100%{background-position:100% 0}
+}
+
+.webflow-style-input {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  max-width: 400px;
+  border-radius: 2px;
+  padding: 1.4rem 1.4rem 1.6rem 1.4rem;
+  background: $input-background;
+  &:after {
+    content: "";
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index: 999;
+    height: 0.4rem;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    background-position: 0% 0%;
+    background: linear-gradient(to right, #B294FF, #57E6E6, #FEFFB8, #57E6E6, #B294FF, #57E6E6);
+    background-size: 500% auto;
+    animation: gradient 3s linear infinite;
+  }
+}
+
+.webflow-style-input input {
+  border-style: none;
+  background: transparent;
+  outline: none;
+  color: $input-text-active;
+  font-size: 1.8rem;
+  line-height: 2.4rem;
+  width: 100%;
+  &::-webkit-input-placeholder {
+    color: $input-text-inactive;
+  }
+}
+
+.webflow-style-input button {
+  margin-left: 1rem;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+}

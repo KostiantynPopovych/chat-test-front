@@ -1,0 +1,8 @@
+.Arrow_icon {
+  fill: #7881A1;
+  width: 2.4rem;
+  transition: fill .25s;
+  &:hover {
+    fill: #BFD2FF;
+  }
+}
