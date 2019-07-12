@@ -11,6 +11,7 @@ import {
 const initialState = {
   connected: false,
   messages: [],
+  logginedUsers: [],
   url: null,
 }
 

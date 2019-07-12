@@ -1,8 +1,11 @@
 import styled from 'styled-components'
 import backgroundImg from '../../assets/img/background.jpg';
 
-export const CenterBlock = styled.div`
+export const FlexBlock = styled.div`
   display: flex;
+`;
+
+export const CenterBlock = styled(FlexBlock)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -13,7 +16,7 @@ export const ScreenCenterBlock = styled(CenterBlock)`
   min-height: 100vh;
 `;
 
-export const ChatWrap = styled.div`
+export const DottedBlockWrap = styled.div`
   border: 5px dotted rgba(57, 63, 84, 0.8);
   width: 80vw;
   height: 500px;
@@ -22,7 +25,19 @@ export const ChatWrap = styled.div`
   margin-bottom: 2rem;
 `;
 
-export const Chat = styled.div`
+export const DottedBlock20VWWrap = styled(DottedBlockWrap)`
+  width: 20vw;
+  border-right: none;
+`;
+
+export const UserName = styled.p`
+  color: #BFD2FF;
+  font-size: 1.7rem;
+  font-weight: 700;
+  margin-bottom: 7px;
+`;
+
+export const DottedBlock = styled.div`
   height: 100%;
   overflow-y: auto;
   padding-right: 10px;

@@ -15,13 +15,16 @@ import {
 import {
   CenterBlock,
   ScreenCenterBlock,
-  ChatWrap,
-  Chat
+  DottedBlockWrap,
+  DottedBlock,
+  FlexBlock,
+  DottedBlock20VWWrap,
+  UserName
 } from './styles';
 
 // import './styles.scss';
 
-const ChatPage = ({ messages, fetchMessages, sendWSMessage, connectToWS, loginUser }) => {
+const ChatPage = ({ messages, fetchMessages, sendWSMessage, connectToWS, loginUser, logginedUsers }) => {
   useEffect(
     () => {
       connectToWS();
@@ -47,7 +50,7 @@ const ChatPage = ({ messages, fetchMessages, sendWSMessage, connectToWS, loginUs
     sendWSMessage(messageObj);
     setMessage('');
   }
-  console.log(messages);
+  console.log(logginedUsers);
   return (
     <ScreenCenterBlock>
       {
@@ -62,16 +65,28 @@ const ChatPage = ({ messages, fetchMessages, sendWSMessage, connectToWS, loginUs
       {
         isLoggined && (
           <>
-            <ChatWrap>
-              <Chat>
-                {
-                  messages.map(({ _id, author, msg, date }) => (
-                    <Message key={_id} author={author} msg={msg} date={formatToMessageDate(date)} />
-                  ))
-                }
+            <FlexBlock>
+              <DottedBlock20VWWrap>
+                <DottedBlock>
+                  {
+                    logginedUsers.map(name => (
+                      <UserName>{name}</UserName>
+                    ))
+                  }
+                </DottedBlock>
+              </DottedBlock20VWWrap>
+              <DottedBlockWrap>
+                <DottedBlock>
+                  {
+                    messages.map(({ _id, author, msg, date }) => (
+                      <Message key={_id} author={author} msg={msg} date={formatToMessageDate(date)} />
+                    ))
+                  }
 
-              </Chat>
-            </ChatWrap>
+                </DottedBlock>
+              </DottedBlockWrap>
+
+            </FlexBlock>
             <form onSubmit={handleMessageSendSubmit}>
               <CenterBlock>
                 <Input placeholder="Say something..." onChange={e => setMessage(e.target.value)} value={message} />
@@ -84,8 +99,9 @@ const ChatPage = ({ messages, fetchMessages, sendWSMessage, connectToWS, loginUs
   )
 }
 
-const mapStateToProps = ({ chat: { messages } }) => ({
+const mapStateToProps = ({ chat: { messages, logginedUsers } }) => ({
   messages,
+  logginedUsers,
 })
 
 const mapDispatchToProps = {
