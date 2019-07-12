@@ -8,7 +8,7 @@ import { WEBSOCKET_PREFIX } from "../constants/config";
 
 const isDev = process.env.NODE_ENV === 'development';
 const baseURL = isDev ? process.env.REACT_APP_LOCAL_API_URL : process.env.REACT_APP_API_URL;
-
+console.log(process.env.NODE_ENV)
 const axiosInstance = axios.create({
   baseURL,
 })
