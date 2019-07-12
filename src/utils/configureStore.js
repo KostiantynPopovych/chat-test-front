@@ -7,7 +7,7 @@ import rootReducer from '../store/reducers';
 import { WEBSOCKET_PREFIX } from "../constants/config";
 
 const isProd = true;
-const baseURL = isProd ? process.env.REACT_APP_API_URL : process.env.REACT_APP_LOCAL_API_URL;
+const baseURL = isProd ? 'https://chat-test-back.herokuapp.com' : 'http://localhost:5000';
 
 const axiosInstance = axios.create({
   baseURL,

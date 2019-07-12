@@ -5,7 +5,7 @@ import {
 import { WEBSOCKET_PREFIX } from '../../constants/config';
 
 const isProd = true;
-const WS_URL = isProd ? process.env.REACT_APP_WS_URL : process.env.REACT_APP_LOCAL_WS_URL;
+const WS_URL = isProd ? 'wss://chat-test-back.herokuapp.com' : 'ws://localhost:5000';
 
 export const fetchChatMessagesSuccess = (messages) => ({
   type: FETCH_CHAT_MESSAGES_SUCCESS,
