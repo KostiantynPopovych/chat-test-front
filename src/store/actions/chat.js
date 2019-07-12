@@ -1,21 +1,19 @@
-import axios from 'axios';
 import { send, connect } from '@giantmachines/redux-websocket';
 import {
   FETCH_CHAT_MESSAGES_SUCCESS,
 } from '../actionTypes/chat';
 import { WEBSOCKET_PREFIX } from '../../constants/config';
 
-const isProd = true;
-const REST_URL = isProd ? 'https://chat-test-back.herokuapp.com/chat' : 'http://localhost:5000/chat';
-const WS_URL = isProd ? 'wss://chat-test-back.herokuapp.com' : 'ws://localhost:5000';
+const isProd = process.env.NODE_ENV === 'production';
+const WS_URL = isProd ? process.env.WS_URL : process.env.LOCAL_WS_URL;
 
 export const fetchChatMessagesSuccess = (messages) => ({
   type: FETCH_CHAT_MESSAGES_SUCCESS,
   payload: messages,
 })
 
-export const fetchMessages = () => async (dispatch) => {
-  const { data } = await axios.get(REST_URL);
+export const fetchMessages = () => async (dispatch, _, api) => {
+  const { data } = await api.get('/chat');
   dispatch(fetchChatMessagesSuccess(data));
 }
 
