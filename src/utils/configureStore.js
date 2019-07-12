@@ -7,8 +7,8 @@ import rootReducer from '../store/reducers';
 import { WEBSOCKET_PREFIX } from "../constants/config";
 
 const isProd = process.env.NODE_ENV === 'production';
-const baseURL = isProd ? process.env.API_URL : process.env.LOCAL_API_URL;
-console.log(process.env);
+const baseURL = isProd ? process.env.REACT_APP_API_URL : process.env.REACT_APP_LOCAL_API_URL;
+
 const axiosInstance = axios.create({
   baseURL,
 })

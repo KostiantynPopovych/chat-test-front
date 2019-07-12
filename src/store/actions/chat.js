@@ -5,7 +5,7 @@ import {
 import { WEBSOCKET_PREFIX } from '../../constants/config';
 
 const isProd = process.env.NODE_ENV === 'production';
-const WS_URL = isProd ? process.env.WS_URL : process.env.LOCAL_WS_URL;
+const WS_URL = isProd ? process.env.REACT_APP_WS_URL : process.env.REACT_APP_LOCAL_WS_URL;
 
 export const fetchChatMessagesSuccess = (messages) => ({
   type: FETCH_CHAT_MESSAGES_SUCCESS,
