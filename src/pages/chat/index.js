@@ -22,8 +22,6 @@ import {
   UserName
 } from './styles';
 
-// import './styles.scss';
-
 const ChatPage = ({ messages, fetchMessages, sendWSMessage, connectToWS, loginUser, logginedUsers }) => {
   useEffect(
     () => {
@@ -50,7 +48,7 @@ const ChatPage = ({ messages, fetchMessages, sendWSMessage, connectToWS, loginUs
     sendWSMessage(messageObj);
     setMessage('');
   }
-  console.log(logginedUsers);
+
   return (
     <ScreenCenterBlock>
       {
@@ -69,8 +67,8 @@ const ChatPage = ({ messages, fetchMessages, sendWSMessage, connectToWS, loginUs
               <DottedBlock20VWWrap>
                 <DottedBlock>
                   {
-                    logginedUsers.map(name => (
-                      <UserName>{name}</UserName>
+                    logginedUsers.map((name, idx) => (
+                      <UserName key={idx}>{name}</UserName>
                     ))
                   }
                 </DottedBlock>
