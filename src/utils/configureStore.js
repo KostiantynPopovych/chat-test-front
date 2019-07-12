@@ -6,9 +6,9 @@ import websocket from '@giantmachines/redux-websocket';
 import rootReducer from '../store/reducers';
 import { WEBSOCKET_PREFIX } from "../constants/config";
 
-const isDev = process.env.NODE_ENV === 'development';
-const baseURL = isDev ? process.env.REACT_APP_LOCAL_API_URL : process.env.REACT_APP_API_URL;
-console.log(process.env.NODE_ENV)
+const isProd = true;
+const baseURL = isProd ? process.env.REACT_APP_API_URL : process.env.REACT_APP_LOCAL_API_URL;
+
 const axiosInstance = axios.create({
   baseURL,
 })
