@@ -7,11 +7,16 @@
   flex-direction: column;
   width: fit-content;
   
-  &-author {
-    color: #BFD2FF;
-    font-size: 1.6rem;
-    font-weight: 700;
-    margin-bottom: 7px;
+  &-header {
+    display: flex;
+    justify-content: space-between;
+
+    &-title {
+      color: #BFD2FF;
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 7px;
+    }
   }
 
   &-msg {

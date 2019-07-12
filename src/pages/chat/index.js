@@ -8,6 +8,9 @@ import {
 } from '../../store/actions/chat';
 import Input from '../../components/input';
 import Message from '../../components/message';
+import {
+  formatToMessageDate,
+} from '../../utils/formatDate';
 
 import {
   CenterBlock,
@@ -40,11 +43,11 @@ const ChatPage = ({ messages, fetchMessages, sendWSMessage, connectToWS, loginUs
 
   const handleMessageSendSubmit = (e) => {
     e.preventDefault();
-    const messageObj = { msg: message };
+    const messageObj = { msg: message, date: new Date().getTime() };
     sendWSMessage(messageObj);
     setMessage('');
   }
-
+  console.log(messages);
   return (
     <ScreenCenterBlock>
       {
@@ -62,8 +65,8 @@ const ChatPage = ({ messages, fetchMessages, sendWSMessage, connectToWS, loginUs
             <ChatWrap>
               <Chat>
                 {
-                  messages.map(({ _id, author, msg }) => (
-                    <Message key={_id} author={author} msg={msg} />
+                  messages.map(({ _id, author, msg, date }) => (
+                    <Message key={_id} author={author} msg={msg} date={formatToMessageDate(date)} />
                   ))
                 }
 
