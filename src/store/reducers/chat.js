@@ -7,6 +7,11 @@ import {
   CHAT_WEBSOCKET_SEND,
   FETCH_CHAT_MESSAGES_SUCCESS,
 } from '../actionTypes/chat';
+import {
+  LOGIN,
+  LOGOUT,
+  MESSAGE
+} from '../../constants/config';
 
 const initialState = {
   connected: false,
@@ -50,12 +55,13 @@ export default (state = initialState, { type, payload, meta }) => {
     case CHAT_WEBSOCKET_MESSAGE:
       const { type, payload: messagePayload } = JSON.parse(payload.message);
       switch (type) {
-        case 'LOGIN':
+        case LOGIN:
+        case LOGOUT:
           return {
             ...state,
             logginedUsers: messagePayload,
           }
-        case 'MESSAGE':
+        case MESSAGE:
           return {
             ...state,
             messages: [
